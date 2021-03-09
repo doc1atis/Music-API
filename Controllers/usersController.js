@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+
 exports.login = async (req, res) => {
     const token = jwt.sign({ id: "12id344" }, process.env.JWT_SECRET_KEY)
     const passwordsMatched = await bcrypt.compare("plainPassword", 'encryptedPassword')
@@ -8,6 +9,7 @@ exports.login = async (req, res) => {
     }
     res.send(`Token is: ${token}`)
 }
+
 exports.register = async (req, res) => {
     try {
         const salt = await bcrypt.genSalt(12)
