@@ -1,16 +1,17 @@
-require('dotenv').config()
+const dotenv = require('dotenv')
 const express = require('express')
-const mongoose = require('mongoose')
-const app = express()
-try {
-    await mongoose.connect(
-        'mongodb://localhost:27017/test',
-        { useNewUrlParser: true }
-    );
-} catch (error) {
-    
-}
-const PORT = process.env.PORT || 3000
+
+// Internal import
+const connectToDB = require('./Helpers/DB')
+const usersRouter = require('./Routes/usersRouter')
+
+dotenv.config()
+connectToDB()
+app = express()
+app.use(express.json())
+app.use('/api/users',usersRouter)
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
     console.log(`App is listening or port: ${PORT}`);
-})
+}) 
