@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const songSchema = mongoose.Schema({
+module.exports = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -16,10 +16,6 @@ const songSchema = mongoose.Schema({
         required: true,
         maxLength:800
     },
-    artist: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Artist'
-    },
     likes: {
         type: Number,
         default:0
@@ -28,22 +24,9 @@ const songSchema = mongoose.Schema({
         type: Number,
         default:0
     },
-    uploadedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'User'
-    },
     uploadDate: {
         type: Date,
         default:Date.now()
     },
-    creationDate: {
-        type: Date,
-        required:true
-    },
-    album: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'Album'
-    }
-
 })
-module.exports = mongoose.model('Song',songSchema)
+

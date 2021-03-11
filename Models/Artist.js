@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const albumsSchema = require('./Album')
 const artistSchema = mongoose.Schema({
     name: {
         type: String,
@@ -6,11 +7,10 @@ const artistSchema = mongoose.Schema({
         maxLength: 255,
         trim:true
     },
-    albums: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref:'Album'
-        }
-    ]
+    albums: [albumsSchema],
+     uploadedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
 })
 module.exports = mongoose.model('Artist',artistSchema)

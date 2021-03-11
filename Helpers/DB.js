@@ -4,6 +4,7 @@ async function connectToDB() {
             useNewUrlParser: true,
             useFindAndModify: false,
             useUnifiedTopology: true,
+            useCreateIndex:true,  
         }
     try {
     await mongoose.connect(process.env.DB_URI,OPTIONS);
